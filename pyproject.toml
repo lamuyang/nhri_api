@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "nhri-api"
+version = "0.1.0"
+description = ""
+authors = ["Lamuyang <lamuyangyang@gmail.com>"]
+readme = "README.md"
+packages = [{include = "nhri_api"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = {extras = ["all"], version = "^0.87.0"}
+sqlalchemy = "^1.4.44"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
