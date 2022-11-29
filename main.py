@@ -1,9 +1,6 @@
 from fastapi import FastAPI, Depends
-
-import crud, model
-from model import LatestNews
-from crud import  get_all_article
-from schemas import LatestNewBase
+from typing import List
+import crud, model, schemas
 from database import SessionLocal, engine
 from sqlalchemy.orm.session import Session
 
@@ -22,7 +19,12 @@ def get_db():
 async def root():
     return {"message": "Hello World"}
 
-@app.get("/LatestNews",response_model=LatestNewBase)
-async def get_Latest_news(db:Session= Depends(get_db)):
-    res = get_all_article(db)
+@app.post("/LatestNews",response_model=List[schemas.LatestNewBase])
+async def get_Latest_news(db:Session = Depends(get_db)):
+    res = crud.get_all_article(db)
+    return res
+
+@app.post("/LatestNews/{article_id}")
+async def get_article(article_id: int, db:Session = Depends(get_db)):
+    res = crud.get_article(db, article_id)
     return res

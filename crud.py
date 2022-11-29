@@ -4,10 +4,12 @@ from fastapi.exceptions import HTTPException
 from sqlalchemy.orm import Session, session
 from model import LatestNews
 
-def get_all_article(boxSession: Session):
-    print(boxSession.query(LatestNews).filter().first())
-    return boxSession.query(LatestNews).filter().first()
+def get_all_article(db: Session):
+    return db.query(LatestNews).all()
 
+def get_article(db: Session, article_id: str):
+    print(type(db.query(LatestNews).filter(LatestNews.id == article_id).one()))
+    return db.query(LatestNews).filter(LatestNews.id == article_id).one()
 # def get_users(boxSession: Session, _skip: int=0, _limit: int=100) -> List[LatestNews]:
 #     return boxSession.query(LatestNews).offset(_skip).limit(_limit).all()
 
