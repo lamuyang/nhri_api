@@ -8,8 +8,10 @@ packages = [{include = "nhri_api"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-fastapi = {extras = ["all"], version = "^0.87.0"}
+fastapi = {extras = ["all"], version = "^0.88.0"}
 sqlalchemy = "^1.4.44"
+uvloop = "0.14"
+uvicorn = "^0.20.0"
 
 
 [build-system]
